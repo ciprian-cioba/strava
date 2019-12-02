@@ -83,3 +83,19 @@ Import this key into your gpg setup (in ~/.gnupg or similar) by running gpg --im
 Now add this person to your secrets repo by running git secret tell persons@email.id (this will be the email address associated with the public key)
 
 The newly added user cannot yet read the encrypted files. Now, re-encrypt the files using git secret reveal; git secret hide -d, and then commit and push the newly encrypted files. (The -d options deletes the unencrypted file after re-encrypting it). Now the newly added user be able to decrypt the files in the repo using git-secret.
+
+
+#### So tests ...
+    Realized this react stuff has a build in jest... good enough for me
+
+
+### deploys
+
+    auto deploy to netlify
+    
+    and zeit
+
+    $ npm i -g now
+    $ now 
+    $ now --prod
+
