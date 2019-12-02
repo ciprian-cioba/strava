@@ -1,5 +1,5 @@
-const axios = require("axios");
-const config = require("../config/default.js");
+import axios from "axios";
+import config from "../config/default.js";
 export async function auth(){
     const res = await axios({
         method: 'post',
