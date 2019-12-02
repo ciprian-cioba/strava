@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-const axios = require('axios')
-// import Axios from 'axios';
+import {api, auth} from './api/strava';
+
 
 class Square extends React.Component {
     constructor() {
@@ -10,33 +10,20 @@ class Square extends React.Component {
         this.state = { data: [] };
     }
     async componentDidMount() {
-        const json = await axios(
-            {
-                method: 'get',
-                baseURL: `https://www.strava.com/api/v3/athlete`,
-                headers: {
-                    Accept: "application/json",
-                    withCredentials: true,
-                    authorization: "Bearer 5cc97ef403a36698da006ec0c50f98d0c1925c16"
-                },
-
-
-            }
-        )
-        console.log(json);
-        this.setState({ data: json.data })
+        const instance = api(await auth());
+        const show = await instance({
+            method: 'get',
+            url: `athlete`
+        });
+        this.setState({ data: show.data})
 
     }
     render() {
-        return (<div>
-            <ul>
-          {Object.keys(this.state.data).map(el => (
-            <li>
-              {el}: {this.state.data}
-            </li>
-          ))}
+        return (
+        <ul>
+          { Object.keys(this.state.data).map(e => <li>{e} : {this.state.data[e]}</li>)}
         </ul>
-        </div>)
+        )
 
     }
 }
