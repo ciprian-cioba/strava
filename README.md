@@ -99,3 +99,5 @@ The newly added user cannot yet read the encrypted files. Now, re-encrypt the fi
     $ now 
     $ now --prod
 
+## publishing to npm
+ https://create-react-app.dev/docs/deployment#publishing-components-to-npm
