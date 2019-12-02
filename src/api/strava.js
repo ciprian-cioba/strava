@@ -1,6 +1,6 @@
 const axios = require("axios");
 const config = require("../config/default.js");
-async function auth(){
+export async function auth(){
     const res = await axios({
         method: 'post',
         baseURL: 'https://www.strava.com/api/v3/oauth/token',
@@ -13,7 +13,7 @@ async function auth(){
     })
     return res.data.access_token;
 }
-function api(token) {
+export function api(token) {
     
     return axios.create({
         baseURL : 'https://www.strava.com/api/v3/',
@@ -25,4 +25,4 @@ function api(token) {
     });
 }
 
-module.exports = {api, auth};
+// module.exports = {api, auth};
