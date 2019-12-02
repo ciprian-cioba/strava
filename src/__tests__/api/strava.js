@@ -1,5 +1,4 @@
 import {api, auth} from "../../api/strava";
-import { expect } from 'chai';
 
 describe('Strava API', () => {
 
@@ -9,7 +8,7 @@ describe('Strava API', () => {
             method: 'get',
             url: `athlete`
         })
-        expect(show.data.lastname).to.eql('Cioba')
+        expect(show.data.lastname).toBe('Cioba')
     })
 
 });
