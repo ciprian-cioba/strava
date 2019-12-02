@@ -1,4 +1,5 @@
-const { api, auth } = require(`../../src/api/strava`);
+// const { api, auth } = require(`../../src/api/strava`);
+import {api, auth} from (`../../src/api/strava`);
 const { describe, it, before } = require("mocha");
 const { expect } = require('chai');
 
