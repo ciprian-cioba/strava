@@ -21,6 +21,7 @@ class Square extends React.Component {
     render() {
         return (
         <ul>
+           Result of calling strava api /athlete endpoint
           { Object.keys(this.state.data).map(e => <li>{e} : {this.state.data[e]}</li>)}
         </ul>
         )
