@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {api, auth} from './api/strava';
+import {api} from './api/strava';
 
 
 class Square extends React.Component {
@@ -10,11 +10,7 @@ class Square extends React.Component {
         this.state = { data: [] };
     }
     async componentDidMount() {
-        const instance = api(await auth());
-        const show = await instance({
-            method: 'get',
-            url: `athlete`
-        });
+        const show = await api();
         this.setState({ data: show.data})
 
     }
