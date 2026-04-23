@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strava Activity Analyzer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        label { display: block; margin-top: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        .zone-card { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Strava Activity Analyzer</h1>
+        <div>
+            <label for="maxHeartRate">Max Heart Rate:</label>
+            <input type="number" id="maxHeartRate" placeholder="Enter max heart rate" />
+        </div>
+        <div>
+            <label for="fileUpload">Upload JSON File:</label>
+            <input type="file" id="fileUpload" accept="application/json" />
+        </div>
+        <div>
+            <label for="jsonInput">Paste JSON Data:</label>
+            <textarea id="jsonInput" rows="10" placeholder="Paste your JSON data here..."></textarea>
+        </div>
+        <button id="analyzeButton">Analyze Data</button>
+        <div id="results" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        document.getElementById('analyzeButton').addEventListener('click', function() {
+            const maxHeartRate = document.getElementById('maxHeartRate').value;
+            const fileUpload = document.getElementById('fileUpload').files[0];
+            let jsonData;
+            
+            if (fileUpload) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    jsonData = JSON.parse(event.target.result);
+                    displayResults(jsonData, maxHeartRate);
+                };
+                reader.readAsText(fileUpload);
+            } else {
+                jsonData = JSON.parse(document.getElementById('jsonInput').value);
+                displayResults(jsonData, maxHeartRate);
+            }
+        });
+
+        function displayResults(data, maxHeartRate) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            // Example logic for zone distribution and pace/heart rate zone cards
+            const zoneDistribution = {}; // Placeholder for zone distribution logic
+            // Example: fill zoneDistribution based on jsonData
+            resultsDiv.innerHTML += '<h2>Zone Distribution</h2><table><tr><th>Zone</th><th>Percentage</th></tr>';
+            for (const zone in zoneDistribution) {
+                resultsDiv.innerHTML += `<tr><td>${zone}</td><td>${zoneDistribution[zone].percentage}%</td></tr>`;
+            }
+            resultsDiv.innerHTML += '</table>';
+
+            // Placeholder for pace/heart rate zone cards
+            resultsDiv.innerHTML += '<div class="zone-card">Pace Zone Card</div>';
+            resultsDiv.innerHTML += '<div class="zone-card">Heart Rate Zone Card</div>';
+        }
+    </script>
+</body>
+</html>
